@@ -1,0 +1,67 @@
+ static Future<void> call_api(BuildContext contextapi,String login,String password)async{
+    var url = "http://localhost:3000/ws/dossiermedicals";
+   
+    try {
+      final response = await http.get(url,
+        
+         
+          headers: {
+            "Accept": "application/json"
+          },
+          encoding: Encoding.getByName("utf-8")
+      ).timeout(const Duration(seconds: 7),onTimeout: () {
+        // time has run out, do what you wanted to do
+        throw TimeoutException('The connection has timed out, Please try again!');
+      },);
+
+
+    // rest of the code
+      if (response.statusCode == 200) {
+      
+      } else {
+        
+      }
+
+    }  catch(e){
+      
+    }
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+   List data; 
+    
+    http.Response response = await http.get(
+        Uri.encodeFull("http://localhost:3000/ws/dossiermedicals"),
+        headers: {"Accept": "application/json","Access-Control-Allow-Origin": "*"});
+
+        print(response.body) ;
+
+   
+       data = json.decode(response.body.toString());
+
+        print(data) ;
+
+            if (data[0]["type_diabete"]=="type1"){
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => type1(),));}
+            else {
+
+               Navigator.push(context,
+            MaterialPageRoute(builder: (context) => type2(),));
+
+            }
+
+
+      
